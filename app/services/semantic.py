@@ -46,7 +46,7 @@ class SymbolTable:
 
 class SemanticAnalyzer:
     
-    SUPPORTED_ALGORITHMS = ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'RS512', 'none']
+    SUPPORTED_ALGORITHMS = ['HS256', 'HS384']
     
     def __init__(self):
         self.errors: List[str] = []
@@ -121,9 +121,8 @@ class SemanticAnalyzer:
             
             # Validar algoritmo soportado
             elif alg not in self.SUPPORTED_ALGORITHMS:
-                self.warnings.append(
-                    f"Algoritmo '{alg}' no está en la lista de soportados: "
-                    f"{', '.join(self.SUPPORTED_ALGORITHMS)}"
+                self.errors.append(
+                    f"Algoritmo no permitido: '{alg}'. Solo se permiten HS256 y HS384."
                 )
             
             if alg == 'none':
