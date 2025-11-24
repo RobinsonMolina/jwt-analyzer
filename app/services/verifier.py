@@ -11,8 +11,7 @@ class JWTVerifier:
     
     SUPPORTED_ALGORITHMS = {
         'HS256': hashlib.sha256,
-        'HS384': hashlib.sha384,
-        'HS512': hashlib.sha512
+        'HS384': hashlib.sha384
     }
     
     def __init__(self):
