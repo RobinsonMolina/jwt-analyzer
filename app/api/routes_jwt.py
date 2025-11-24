@@ -174,6 +174,13 @@ async def analyze_jwt(request: AnalyzeRequest):
             try:
                 verifier = JWTVerifier()
                 verification_result = verifier.verify(token, request.secret)
+                
+                if verification_result["algorithm"] is None:
+                    verification_result["valid"] = False
+                    verification_result["errors"].append(
+                        "Algoritmo no permitido. Solo HS256 y HS384 son válidos."
+                    )
+                
                 result["phases"]["verification"] = {
                     "valid": verification_result["valid"],
                     "signature_match": verification_result["signature_match"],
@@ -194,9 +201,9 @@ async def analyze_jwt(request: AnalyzeRequest):
         
         # Determinar validez general
         all_phases_valid = all(
-            phase.get("valid", False) 
+            phase.get("valid", False)
             for phase_name, phase in result["phases"].items()
-            if phase_name != "verification" and "valid" in phase
+            if "valid" in phase
         )
         
         result["overall_valid"] = all_phases_valid
