@@ -33,8 +33,8 @@ class EncodeRequest(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
-                "payload": {"sub": "1234567890", "name": "John Doe"},
-                "secret": "my-secret-key",
+                "payload": {"sub": "1234567890", "name": "Robinson Molina"},
+                "secret": "robin1234",
                 "algorithm": "HS256",
                 "expires_in": 3600
             }

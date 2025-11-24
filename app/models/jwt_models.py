@@ -84,7 +84,7 @@ class JWTPayload(BaseModel):
         json_schema_extra = {
             "example": {
                 "sub": "1234567890",
-                "name": "John Doe",
+                "name": "Robinson Molina",
                 "iat": 1516239022
             }
         }
